@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+	<sub-flow name="getUsuariosSub_Flow"
+		doc:id="654ab52e-50a4-4e51-959b-f706d8d0dcbc">
+		<set-payload value='[&#10;  {&#10;    "id": 1,&#10;    "nombre": "Juan Pérez",&#10;    "email": "juan.perez@example.com",&#10;    "direccion": {&#10;      "calle": "Av. Siempre Viva",&#10;      "ciudad": "Springfield",&#10;      "pais": "USA"&#10;    },&#10;    "telefono": "+1-555-1234",&#10;    "rol": "usuario"&#10;  },&#10;  {&#10;    "id": 2,&#10;    "nombre": "María García",&#10;    "email": "maria.garcia@example.com",&#10;    "direccion": {&#10;      "calle": "Calle Falsa 123",&#10;      "ciudad": "Ciudad Gótica",&#10;      "pais": "México"&#10;    },&#10;    "telefono": "+52-555-5678",&#10;    "rol": "administrador"&#10;  },&#10;  {&#10;    "id": 3,&#10;    "nombre": "Carlos López",&#10;    "email": "carlos.lopez@example.com",&#10;    "direccion": {&#10;      "calle": "Calle Luna",&#10;      "ciudad": "Madrid",&#10;      "pais": "España"&#10;    },&#10;    "telefono": "+34-911-234567",&#10;    "rol": "moderador"&#10;  },&#10;  {&#10;    "id": 4,&#10;    "nombre": "Ana Fernández",&#10;    "email": "ana.fernandez@example.com",&#10;    "direccion": {&#10;      "calle": "Rua das Flores",&#10;      "ciudad": "Lisboa",&#10;      "pais": "Portugal"&#10;    },&#10;    "telefono": "+351-21-1234567",&#10;    "rol": "usuario"&#10;  }&#10;]' doc:name="Set Payload" doc:id="5e6f70c2-dbac-4e76-a46e-6f38878b254f" mimeType="application/json"/>
+		<logger level="INFO"
+			message="get:\usuarios:s-example-api-config" />
+	</sub-flow>
+</mule>

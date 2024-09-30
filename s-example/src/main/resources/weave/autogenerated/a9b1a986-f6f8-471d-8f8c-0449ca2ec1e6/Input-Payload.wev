@@ -1,0 +1,17 @@
+%dw 2.0
+
+type auto_a9b1a986_f6f8_471d_8f8c_0449ca2ec1e6_Input_Payload = {
+  direccion?: {
+    ciudad?: String, 
+    calle?: String, 
+    pais?: String, 
+    _?: Any
+  }, 
+  id?: Number, 
+  telefono?: String, 
+  nombre: String, 
+  email: String, 
+  rol?: "invitado" | "admin" | "usuario", 
+  _?: Any
+}
+

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd ">
+    
+	<flow name="s-example-api-main">
+        <http:listener config-ref="HTTP_Listener_config" path="/api/*">
+            <http:response statusCode="#[vars.httpStatus default 200]">
+                <http:headers>#[vars.outboundHeaders default {}]</http:headers>
+            </http:response>
+            <http:error-response statusCode="#[vars.httpStatus default 500]">
+                <http:body>#[payload]</http:body>
+                <http:headers>#[vars.outboundHeaders default {}]</http:headers>
+            </http:error-response>
+        </http:listener>
+        <apikit:router config-ref="s-example-api-config" />
+        <error-handler ref="ErrorHandler_Apikit">
+            
+        </error-handler>
+    </flow>
+    <flow name="s-example-api-console">
+        <http:listener config-ref="HTTP_Listener_config" path="/console/*">
+            <http:response statusCode="#[vars.httpStatus default 200]">
+                <http:headers>#[vars.outboundHeaders default {}]</http:headers>
+            </http:response>
+            <http:error-response statusCode="#[vars.httpStatus default 500]">
+                <http:body>#[payload]</http:body>
+                <http:headers>#[vars.outboundHeaders default {}]</http:headers>
+            </http:error-response>
+        </http:listener>
+        <apikit:console config-ref="s-example-api-config" />
+        <error-handler ref="errorHandler_Console">
+            
+        </error-handler>
+    </flow>
+    <flow name="put:\usuarios\(id):application\json:s-example-api-config">
+		<flow-ref doc:name="Flow Reference" doc:id="712c29be-319a-44db-8997-a64a13d89d79" name="putUsuarioSub_Flow"/>
+       
+    </flow>
+    <flow name="delete:\usuarios\(id):s-example-api-config">
+		<flow-ref doc:name="Flow Reference" doc:id="37cc30a5-d4a5-4453-b4b8-b48705e44c33" name="deleteUsuarioSub_Flow"/>
+       
+    </flow>
+    <flow name="get:\usuarios:s-example-api-config">
+		<flow-ref doc:name="Flow Reference" doc:id="b661df94-52b9-424b-a549-55c7e0f7609a" name="getUsuariosSub_Flow"/>
+    </flow>
+    <flow name="get:\usuarios\(id):s-example-api-config">
+		<flow-ref doc:name="Flow Reference" doc:id="3ed027f0-edcb-4211-af4a-a905f2cdaf7e" name="getUsuarioSub_Flow"/>
+        
+    </flow>
+    <flow name="post:\usuarios:application\json:s-example-api-config">
+		<flow-ref doc:name="Flow Reference" doc:id="e79b1db5-7f25-4c1b-a4b7-1a960e5e8e42" name="postUsuarioSub_Flow"/>
+        
+    </flow>
+</mule>

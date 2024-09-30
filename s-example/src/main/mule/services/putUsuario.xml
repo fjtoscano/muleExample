@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+	<sub-flow name="putUsuarioSub_Flow"
+		doc:id="df325ad5-31c0-4cf2-bf3a-107654749cde">
+		<ee:transform doc:name="Transform Message" doc:id="5663b39c-3a41-4a47-a6e2-1ddd277bd2b6" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+{
+  "id": 1,
+  "nombre": "Juan Pérez",
+  "email": "juan.perez@example.com",
+  "direccion": {
+    "calle": "Av. Siempre Viva",
+    "ciudad": "Springfield",
+    "pais": "USA"
+  },
+  "telefono": "+1-555-1234",
+  "rol": "usuario"
+}]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO"
+			message="put:\usuarios\(id):application\json:s-example-api-config" />
+	</sub-flow>
+</mule>

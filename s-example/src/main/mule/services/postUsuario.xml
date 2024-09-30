@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<sub-flow name="postUsuarioSub_Flow"
+		doc:id="76b172e0-e977-4c56-bdf7-e393e440d1c7">
+		<ee:transform doc:name="Transform Message" doc:id="3af4c882-cfc9-4869-8e61-8e2e0efee2c1" >
+			<ee:message >
+			</ee:message>
+			<ee:variables >
+				<ee:set-variable variableName="httpStatus" ><![CDATA[201]]></ee:set-variable>
+			</ee:variables>
+		</ee:transform>
+		<logger level="INFO"
+			message="post:\usuarios:application\json:s-example-api-config" />
+	</sub-flow>
+</mule>

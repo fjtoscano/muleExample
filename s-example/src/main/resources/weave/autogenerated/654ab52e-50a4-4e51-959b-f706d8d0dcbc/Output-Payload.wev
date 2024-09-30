@@ -1,0 +1,4 @@
+%dw 2.0
+
+type auto_654ab52e_50a4_4e51_959b_f706d8d0dcbc_Output_Payload = Array<{  direccion?: {    ciudad?: String,     calle?: String,     pais?: String,     _?: Any  },   id?: Number,   telefono?: String,   nombre: String,   email: String,   rol?: "invitado" | "admin" | "usuario",   _?: Any}>
+
