@@ -105,6 +105,242 @@ output application/json
 			</ee:transform>
 		</on-error-propagate>
 	</error-handler>
-	<!-- [STUDIO:"errorHandler_Main"]<error-handler name="errorHandler_Main" 
-		doc:id="70df550a-893a-4445-a3e1-20cfca5d51ee" /> [STUDIO] -->
+	<error-handler name="errorHandler_Main"
+		doc:id="70df550a-893a-4445-a3e1-20cfca5d51ee">
+		<on-error-continue enableNotifications="true"
+			logException="true" doc:name="On Error Continue"
+			doc:id="755cd373-628f-4f8b-8978-847bb4699af4" type="HTTP:BAD_REQUEST">
+			<ee:transform
+				doc:name="Set httStatus 400 and set errorResponse"
+				doc:id="091d32ea-f390-4268-a6f0-86b24861abec">
+				<ee:message>
+					<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+	code: "400",
+	reason: error.errorType.identifier,
+	message: error.description,
+	status: "",
+	referenceError: ""
+}]]></ee:set-payload>
+				</ee:message>
+				<ee:variables>
+					<ee:set-variable variableName="httpStatus"><![CDATA[400]]></ee:set-variable>
+				</ee:variables>
+			</ee:transform>
+		</on-error-continue>
+		<on-error-continue enableNotifications="true"
+			logException="true" doc:name="On Error Continue"
+			doc:id="395c11ae-41b3-4a57-af89-0ecfcba37c35"
+			type="HTTP:UNAUTHORIZED">
+			<ee:transform
+				doc:name="Set httStatus 401 and set errorResponse"
+				doc:id="2846cd47-b255-4b5b-a76e-d41d71ed3161">
+				<ee:message>
+					<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+	code: "401",
+	reason: error.errorType.identifier,
+	message: error.description,
+	status: "",
+	referenceError: ""
+}]]></ee:set-payload>
+				</ee:message>
+				<ee:variables>
+					<ee:set-variable variableName="httpStatus"><![CDATA[401]]></ee:set-variable>
+				</ee:variables>
+			</ee:transform>
+		</on-error-continue>
+		<on-error-continue enableNotifications="true"
+			logException="true" doc:name="On Error Continue"
+			doc:id="9b226d4b-da85-4ad1-9c47-db2e4bb05cba" type="HTTP:FORBIDDEN">
+			<ee:transform
+				doc:name="Set httStatus 403 and set errorResponse"
+				doc:id="7b46df4f-2ea8-4ac8-a5a6-8f581de32284">
+				<ee:message>
+					<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+	code: "403",
+	reason: error.errorType.identifier,
+	message: error.description,
+	status: "",
+	referenceError: ""
+}]]></ee:set-payload>
+				</ee:message>
+				<ee:variables>
+					<ee:set-variable variableName="httpStatus"><![CDATA[403]]></ee:set-variable>
+				</ee:variables>
+			</ee:transform>
+		</on-error-continue>
+		<on-error-continue enableNotifications="true"
+			logException="true" doc:name="On Error Continue"
+			doc:id="c0587bd8-5107-4f5b-b99e-c032440128f1" type="HTTP:NOT_FOUND">
+			<ee:transform
+				doc:name="Set httStatus 404 and set errorResponse"
+				doc:id="f9a83ae3-ba36-4c1d-acdb-9f2ca4afae66">
+				<ee:message>
+					<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+	code: "404",
+	reason: error.errorType.identifier,
+	message: error.description,
+	status: "",
+	referenceError: ""
+}]]></ee:set-payload>
+				</ee:message>
+				<ee:variables>
+					<ee:set-variable variableName="httpStatus"><![CDATA[404]]></ee:set-variable>
+				</ee:variables>
+			</ee:transform>
+		</on-error-continue>
+		<on-error-continue enableNotifications="true"
+			logException="true" doc:name="On Error Continue"
+			doc:id="38253324-a1c3-4cd4-b866-8a9c38b629e0"
+			type="HTTP:METHOD_NOT_ALLOWED">
+			<ee:transform
+				doc:name="Set httStatus 405 and set errorResponse"
+				doc:id="022fd6d4-768f-4afb-a72a-43bcf599be20">
+				<ee:message>
+					<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+	code: "405",
+	reason: error.errorType.identifier,
+	message: error.description,
+	status: "",
+	referenceError: ""
+}]]></ee:set-payload>
+				</ee:message>
+				<ee:variables>
+					<ee:set-variable variableName="httpStatus"><![CDATA[405]]></ee:set-variable>
+				</ee:variables>
+			</ee:transform>
+		</on-error-continue>
+		<on-error-continue enableNotifications="true"
+			logException="true" doc:name="On Error Continue"
+			doc:id="8fa5ed9a-733b-46ef-882f-ce6f19b9ff9b"
+			type="HTTP:UNSUPPORTED_MEDIA_TYPE">
+			<ee:transform
+				doc:name="Set httStatus 415 and set errorResponse"
+				doc:id="1db4bb50-2951-4eff-9fd5-1d616a1754c8">
+				<ee:message>
+					<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+	code: "415",
+	reason: error.errorType.identifier,
+	message: error.description,
+	status: "",
+	referenceError: ""
+}]]></ee:set-payload>
+				</ee:message>
+				<ee:variables>
+					<ee:set-variable variableName="httpStatus"><![CDATA[415]]></ee:set-variable>
+				</ee:variables>
+			</ee:transform>
+		</on-error-continue>
+		<on-error-continue enableNotifications="true"
+			logException="true" doc:name="On Error Continue"
+			doc:id="3375f8b5-29e5-4134-bba9-4a84ccc698c3" type="HTTP:TIMEOUT">
+			<ee:transform
+				doc:name="Set httStatus 504 and set errorResponse"
+				doc:id="2d465d0c-728c-4bf4-9b5f-0b8fe21692fe">
+				<ee:message>
+					<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+	code: "504",
+	reason: error.errorType.identifier,
+	message: error.description,
+	status: "",
+	referenceError: ""
+}]]></ee:set-payload>
+				</ee:message>
+				<ee:variables>
+					<ee:set-variable variableName="httpStatus"><![CDATA[504]]></ee:set-variable>
+				</ee:variables>
+			</ee:transform>
+		</on-error-continue>
+		<on-error-continue enableNotifications="true"
+			logException="true" doc:name="On Error Continue"
+			doc:id="13de6b79-5db4-4073-b003-516241795358"
+			type="HTTP:CONNECTIVITY">
+			<ee:transform
+				doc:name="Set httStatus 500 and set errorResponse"
+				doc:id="1309dff2-0db2-4c17-832a-e70977d6f37d">
+				<ee:message>
+					<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+	code: "500",
+	reason: error.errorType.identifier,
+	message: error.description,
+	status: "",
+	referenceError: ""
+}]]></ee:set-payload>
+				</ee:message>
+				<ee:variables>
+					<ee:set-variable variableName="httpStatus"><![CDATA[500]]></ee:set-variable>
+				</ee:variables>
+			</ee:transform>
+		</on-error-continue>
+		<on-error-continue enableNotifications="true"
+			logException="true" doc:name="On Error Continue"
+			doc:id="f1fe2eed-eeb3-4054-8540-5f8cac67df2b"
+			type="HTTP:INTERNAL_SERVER_ERROR">
+			<ee:transform
+				doc:name="Set httStatus 500 and set errorResponse"
+				doc:id="b00c214a-535c-4c78-85d4-ba2408307daf">
+				<ee:message>
+					<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+	code: "500",
+	reason: error.errorType.identifier,
+	message: error.description,
+	status: "",
+	referenceError: ""
+}]]></ee:set-payload>
+				</ee:message>
+				<ee:variables>
+					<ee:set-variable variableName="httpStatus"><![CDATA[500]]></ee:set-variable>
+				</ee:variables>
+			</ee:transform>
+		</on-error-continue>
+		<on-error-continue enableNotifications="true"
+			logException="true" doc:name="On Error Continue"
+			doc:id="b7805a11-469d-42f6-9198-b22f509ad26e" type="ANY">
+			<ee:transform
+				doc:name="Set httStatus 500 and set errorResponse"
+				doc:id="9adeee05-7313-4a05-8156-03b8caf8ccff">
+				<ee:message>
+					<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+	code: "500",
+	reason: error.errorType.identifier,
+	message: error.description,
+	status: "",
+	referenceError: ""
+}]]></ee:set-payload>
+				</ee:message>
+				<ee:variables>
+					<ee:set-variable variableName="httpStatus"><![CDATA[500]]></ee:set-variable>
+				</ee:variables>
+			</ee:transform>
+		</on-error-continue>
+	</error-handler>
 </mule>

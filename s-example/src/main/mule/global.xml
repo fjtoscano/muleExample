@@ -10,4 +10,5 @@ http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/htt
     <http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="b714957b-8993-4cb6-b847-7eab07325c01" >
 		<http:listener-connection host="0.0.0.0" port="8081" />
 	</http:listener-config>
+	<configuration doc:name="Configuration" doc:id="6e10d619-ba42-4a22-a58d-8529560645c6" defaultErrorHandler-ref="errorHandler_Main" />
 </mule>
